@@ -1,0 +1,117 @@
+[gd_scene load_steps=14 format=3 uid="uid://pfgmf6747ttw"]
+
+[ext_resource type="Script" path="res://master.gd" id="1_ivj6y"]
+[ext_resource type="Texture2D" uid="uid://byr6o4km8v48" path="res://icon.svg" id="1_kdgov"]
+[ext_resource type="Script" path="res://camera.gd" id="1_uxnku"]
+[ext_resource type="Script" path="res://slider_timer.gd" id="3_e8i7f"]
+[ext_resource type="Script" path="res://rotation_timer.gd" id="4_kq8i7"]
+[ext_resource type="Script" path="res://info.gd" id="6_a8f7e"]
+[ext_resource type="Script" path="res://file_dialog.gd" id="6_tpkce"]
+[ext_resource type="Script" path="res://pause.gd" id="8_hy0ts"]
+
+[sub_resource type="Environment" id="Environment_kmgkm"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2dpbj"]
+transparency = 1
+albedo_texture = ExtResource("1_kdgov")
+anisotropy = 1.0
+texture_repeat = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_xgk8a"]
+size = Vector2(10, 10)
+
+[sub_resource type="SystemFont" id="SystemFont_bpaax"]
+font_names = PackedStringArray("Sans-Serif")
+font_weight = 600
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfuin"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_ivj6y")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kmgkm")
+
+[node name="camera" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0, 0)
+script = ExtResource("1_uxnku")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -30)
+material_override = SubResource("StandardMaterial3D_2dpbj")
+mesh = SubResource("QuadMesh_xgk8a")
+
+[node name="slider" type="Timer" parent="MeshInstance3D"]
+wait_time = 30.0
+script = ExtResource("3_e8i7f")
+
+[node name="rotation" type="Timer" parent="MeshInstance3D"]
+wait_time = 5.0
+script = ExtResource("4_kq8i7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="text" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = SubResource("SystemFont_bpaax")
+theme_override_font_sizes/font_size = 27
+text = "57st.su/c"
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(220, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_tfuin")
+
+[node name="info" type="Label" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -16.5
+offset_right = 9.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_fonts/font = SubResource("SystemFont_bpaax")
+theme_override_font_sizes/font_size = 27
+text = "1"
+script = ExtResource("6_a8f7e")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+initial_position = 2
+size = Vector2i(940, 940)
+min_size = Vector2i(460, 460)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+script = ExtResource("6_tpkce")
+
+[node name="Node" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("8_hy0ts")
