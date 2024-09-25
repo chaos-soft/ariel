@@ -3,11 +3,10 @@ extends Node3D
 var config: ConfigFile = ConfigFile.new()
 
 
-func _input(event: InputEvent) -> void:
-    if event is InputEventKey and event.pressed:
-        if event.keycode == KEY_O:
-            $FileDialog.current_dir = config.get_value('master', 'last_dir', 'res://')
-            $FileDialog.show()
+func _input(_event: InputEvent) -> void:
+    if Input.is_action_just_pressed('open_file_dialog'):
+        $FileDialog.current_dir = config.get_value('master', 'last_dir', 'res://')
+        $FileDialog.show()
 
 
 func _ready() -> void:
@@ -16,10 +15,13 @@ func _ready() -> void:
     if not last_dir or not DirAccess.dir_exists_absolute(last_dir):
         $FileDialog.show()
     else:
-        $MeshInstance3D/slider.run()
+        $MeshInstance3D.run()
 
 
 func set_dir(dir: String) -> void:
     config.set_value('master', 'last_dir', dir)
     config.save('user://config.ini')
-    $MeshInstance3D/slider.restart(true)
+    $MeshInstance3D.reset_position_tween()
+    await get_tree().create_timer($MeshInstance3D.timeout_tween).timeout
+    $MeshInstance3D.reload_images()
+    $MeshInstance3D.restart_tween()

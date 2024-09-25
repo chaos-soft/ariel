@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://pfgmf6747ttw"]
+[gd_scene load_steps=13 format=3 uid="uid://pfgmf6747ttw"]
 
 [ext_resource type="Script" path="res://master.gd" id="1_ivj6y"]
 [ext_resource type="Texture2D" uid="uid://byr6o4km8v48" path="res://icon.svg" id="1_kdgov"]
 [ext_resource type="Script" path="res://camera.gd" id="1_uxnku"]
-[ext_resource type="Script" path="res://slider_timer.gd" id="3_e8i7f"]
-[ext_resource type="Script" path="res://rotation_timer.gd" id="4_kq8i7"]
+[ext_resource type="Script" path="res://slider.gd" id="3_e8i7f"]
 [ext_resource type="Script" path="res://info.gd" id="6_a8f7e"]
 [ext_resource type="Script" path="res://file_dialog.gd" id="6_tpkce"]
 [ext_resource type="Script" path="res://pause.gd" id="8_hy0ts"]
@@ -41,21 +40,14 @@ script = ExtResource("1_ivj6y")
 environment = SubResource("Environment_kmgkm")
 
 [node name="camera" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 0, 0)
 script = ExtResource("1_uxnku")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -30)
 material_override = SubResource("StandardMaterial3D_2dpbj")
 mesh = SubResource("QuadMesh_xgk8a")
-
-[node name="slider" type="Timer" parent="MeshInstance3D"]
-wait_time = 30.0
 script = ExtResource("3_e8i7f")
-
-[node name="rotation" type="Timer" parent="MeshInstance3D"]
-wait_time = 5.0
-script = ExtResource("4_kq8i7")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -80,7 +72,7 @@ modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(220, 60)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_tfuin")
 
 [node name="info" type="Label" parent="MarginContainer/Panel"]
@@ -112,6 +104,6 @@ file_mode = 2
 access = 2
 script = ExtResource("6_tpkce")
 
-[node name="Node" type="Node" parent="."]
+[node name="pause" type="Node" parent="."]
 process_mode = 3
 script = ExtResource("8_hy0ts")

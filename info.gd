@@ -1,10 +1,11 @@
 extends Label
 
-@onready var panel: Panel = self.get_parent()
+@onready var panel: Panel = get_parent()
+var timeout_tween: float = 0.2
 
 
 func show_hide(text_: String) -> void:
-    self.text = text_
+    text = text_
     var tween = create_tween()
-    tween.tween_property(panel, 'modulate', Color.WHITE, 0.2)
-    tween.tween_property(panel, 'modulate', Color.TRANSPARENT, 0.2).set_delay(1)
+    tween.tween_property(panel, 'modulate', Color.WHITE, timeout_tween)
+    tween.tween_property(panel, 'modulate', Color.TRANSPARENT, timeout_tween).set_delay(1)
