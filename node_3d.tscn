@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://pfgmf6747ttw"]
+[gd_scene load_steps=12 format=3 uid="uid://pfgmf6747ttw"]
 
 [ext_resource type="Script" path="res://master.gd" id="1_ivj6y"]
 [ext_resource type="Texture2D" uid="uid://byr6o4km8v48" path="res://icon.svg" id="1_kdgov"]
 [ext_resource type="Script" path="res://camera.gd" id="1_uxnku"]
 [ext_resource type="Script" path="res://slider.gd" id="3_e8i7f"]
 [ext_resource type="Script" path="res://info.gd" id="6_a8f7e"]
-[ext_resource type="Script" path="res://file_dialog.gd" id="6_tpkce"]
 [ext_resource type="Script" path="res://pause.gd" id="8_hy0ts"]
 
 [sub_resource type="Environment" id="Environment_kmgkm"]
@@ -102,7 +101,6 @@ min_size = Vector2i(460, 460)
 ok_button_text = "Select Current Folder"
 file_mode = 2
 access = 2
-script = ExtResource("6_tpkce")
 
 [node name="pause" type="Node" parent="."]
 process_mode = 3
