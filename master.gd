@@ -5,7 +5,6 @@ var config: ConfigFile = ConfigFile.new()
 
 func _input(_event: InputEvent) -> void:
     if Input.is_action_just_pressed('open_file_dialog'):
-        Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
         $FileDialog.current_dir = config.get_value('master', 'last_dir', 'res://')
         $FileDialog.show()
 
@@ -22,7 +21,6 @@ func _ready() -> void:
 
 
 func set_dir(dir: String) -> void:
-    Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
     config.set_value('master', 'last_dir', dir)
     config.save('user://config.ini')
     await $MeshInstance3D.reset_position_tween()

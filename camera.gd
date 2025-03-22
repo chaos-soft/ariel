@@ -69,8 +69,11 @@ func on_image_changed(path: String, file: String, _image: Image) -> void:
 func parse_config(path: String) -> void:
     if not config:
         var file = FileAccess.open('{0}/config.json'.format([path]), FileAccess.READ)
-        var content = file.get_as_text()
-        config = JSON.parse_string(content)
+        if file:
+            var content = file.get_as_text()
+            config = JSON.parse_string(content)
+        else:
+            config = {}
 
 
 func reset_position(value: Vector3) -> void:

@@ -101,6 +101,7 @@ min_size = Vector2i(460, 460)
 ok_button_text = "Select Current Folder"
 file_mode = 2
 access = 2
+use_native_dialog = true
 
 [node name="pause" type="Node" parent="."]
 process_mode = 3

@@ -66,7 +66,7 @@ func reload_images() -> void:
     path = get_node('/root/Node3D').config.get_value('master', 'last_dir')
     var dir = DirAccess.open(path)
     for v in dir.get_files():
-        if v.right(4) in extensions:
+        if v.right(4).to_lower() in extensions:
             images.append(v)
     reset_index()
     change_image()
