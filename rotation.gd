@@ -19,6 +19,7 @@ func get_random_rotation_degrees() -> Vector3:
 func kill_tween() -> void:
     if tween:
         tween.kill()
+    reset_rotation_degrees(default_rotation_degrees)
 
 
 func loop() -> void:

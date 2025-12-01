@@ -1,12 +1,13 @@
 extends MeshInstance3D
 
-const rotation_ = preload('res://rotation.gd')
+const rotation_gd = preload('res://rotation.gd')
 signal image_changed
 var extensions = ['.jpg', '.png', 'jpeg', 'webp']
 var image_index: int = 0
 var images: Array[String] = []
 var images_random: Array[String] = []
 var path: String = ''
+var rotation_: MeshInstance3D = null
 var tween: Tween = null
 var tween_delay: float = 30
 var tween_timeout: float = 0.6
@@ -22,7 +23,7 @@ func _input(_event: InputEvent) -> void:
 
 
 func _ready():
-    rotation_.new(self)
+    rotation_ = rotation_gd.new(self)
 
 
 func change_image() -> void:
