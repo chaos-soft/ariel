@@ -1,7 +1,7 @@
 extends Camera3D
 
 @onready var info: Label = get_node('/root/Node3D/MarginContainer/Panel/info')
-@onready var slider: MeshInstance3D = get_node('/root/Node3D/MeshInstance3D')
+@onready var slider: MeshInstance3D = get_node('/root/Node3D/slider')
 var config: Dictionary = {}
 var position_: Vector3 = Vector3(positionX, positionY, positionZ)
 var positionX: int = 7

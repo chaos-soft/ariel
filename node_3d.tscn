@@ -35,14 +35,14 @@ corner_radius_bottom_left = 4
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_ivj6y")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="light" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kmgkm")
 
 [node name="camera" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 0, 0)
 script = ExtResource("1_uxnku")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="slider" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -30)
 material_override = SubResource("StandardMaterial3D_2dpbj")
 mesh = SubResource("QuadMesh_xgk8a")
@@ -104,5 +104,4 @@ access = 2
 use_native_dialog = true
 
 [node name="pause" type="Node" parent="."]
-process_mode = 3
 script = ExtResource("8_hy0ts")

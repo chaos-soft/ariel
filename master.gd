@@ -17,12 +17,12 @@ func _ready() -> void:
     if not last_dir or not DirAccess.dir_exists_absolute(last_dir):
         $FileDialog.show()
     else:
-        $MeshInstance3D.run()
+        $slider.run()
 
 
 func set_dir(dir: String) -> void:
     config.set_value('master', 'last_dir', dir)
     config.save('user://config.ini')
-    await $MeshInstance3D.reset_position_tween()
-    $MeshInstance3D.reload_images()
-    $MeshInstance3D.restart_tween()
+    await $slider.reset_position_tween()
+    $slider.reload_images()
+    $slider.restart_tween()
