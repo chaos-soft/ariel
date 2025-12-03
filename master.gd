@@ -11,6 +11,7 @@ func _input(_event: InputEvent) -> void:
 
 func _ready() -> void:
     $FileDialog.connect('dir_selected', set_dir)
+    $FileDialog.connect('visibility_changed', on_visibility_changed)
     Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
     config.load('user://config.ini')
     var last_dir = config.get_value('master', 'last_dir')
@@ -18,6 +19,13 @@ func _ready() -> void:
         $FileDialog.show()
     else:
         $slider.run()
+
+
+func on_visibility_changed() -> void:
+    if $FileDialog.visible:
+        Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+    else:
+        Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 
 func set_dir(dir: String) -> void:
