@@ -57,6 +57,7 @@ func on_image_changed(path: String, file: String, _image: Image) -> void:
         if 'position' in c:
             await reset_position(Vector3(c['position'][0], c['position'][1], c['position'][2]))
         if 'tween' in c:
+            slider.rotation_.kill_tween()
             tween = create_tween()
             tween.tween_property(
                 self,

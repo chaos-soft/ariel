@@ -19,6 +19,7 @@ func get_random_rotation_degrees() -> Vector3:
 func kill_tween() -> void:
     if tween:
         tween.kill()
+    # Для паузы.
     reset_rotation_degrees(default_rotation_degrees)
 
 
@@ -33,18 +34,12 @@ func loop() -> void:
     tween.connect('finished', loop)
 
 
-func on_image_changed(_path: String, _file: String, image: Image) -> void:
+func on_image_changed(_path: String, _file: String, _image: Image) -> void:
     kill_tween()
-    var ratio = snappedf(float(image.get_width()) / image.get_height(), 0.1)
-    if ratio >= 0.7 and ratio <= 3.0:
-        await reset_rotation_degrees(get_random_rotation_degrees())
-        loop()
-    # Длинные картинки.
-    else:
-        reset_rotation_degrees(default_rotation_degrees)
+    reset_rotation_degrees(get_random_rotation_degrees())
+    loop()
 
 
 func reset_rotation_degrees(value: Vector3) -> void:
     tween = slider.create_tween().set_trans(Tween.TRANS_QUAD)
     tween.tween_property(slider, 'rotation_degrees', value, reset_timeout)
-    await tween.finished
